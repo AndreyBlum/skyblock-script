@@ -1,5 +1,9 @@
 # CHANGELOG.md
 
+## 1.2.2
+
+# FEATURE
+- Adding move duration and changing move_180 atribute for only one movement  
 ## 1.1.2
 
 # BUGFIX
