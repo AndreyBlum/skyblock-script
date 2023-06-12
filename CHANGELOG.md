@@ -1,9 +1,13 @@
 # CHANGELOG.md
 
+## 1.1.2
+
+# BUGFIX
+- Reverting duration move changes
 ## 1.1.1
 
 # FEATURE
-- change move duration and adding constant 
+- Change move duration and adding constant 
 ## 1.0.1
 
 # BUGFIX
