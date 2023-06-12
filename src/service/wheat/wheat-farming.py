@@ -69,6 +69,11 @@ def locate_breaking_events():
     if bad_internet or bad_internet_2:
         print("Bad Internet - Exiting...")
         exit()
+    warped_to_hub = pyautogui.locateCenterOnScreen("src/assets/wheat/warped_to_hub.png")
+    warped_to_hub_2 = pyautogui.locateCenterOnScreen("src/assets/wheat/warped_to_hub_2.png")
+    if warped_to_hub or warped_to_hub_2:
+        print("You got warped to hub - Warping back Garden...")
+        warp_garden()
 
 def act():
     runs = 0
