@@ -3,7 +3,7 @@
 ## 1.1.1
 
 # FEATURE
-- Fixing warps in the row count 5 and 10
+- change move duration and adding constant 
 ## 1.0.1
 
 # BUGFIX
