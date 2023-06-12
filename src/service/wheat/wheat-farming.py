@@ -45,9 +45,10 @@ def warp_garden():
     time.sleep(5)
 
 def move_180():
+    MOVE_DURATION = 0.5
     print("Moving 180 dregrees")
-    pyautogui.move(800, 0)
-    pyautogui.move(400, 0)
+    pyautogui.move(800, 0, duration=MOVE_DURATION)
+    pyautogui.move(400, 0, duration=MOVE_DURATION)
     pyautogui.keyDown("W")
     time.sleep(0.5)
     pyautogui.keyUp("W")
@@ -61,6 +62,7 @@ def invert_move(direction):
         return "right"
 def change_window():
     pyautogui.hotkey('alt', 'tab')
+    time.sleep(0.5)
     pyautogui.press('esc')
 
 def locate_breaking_events():
