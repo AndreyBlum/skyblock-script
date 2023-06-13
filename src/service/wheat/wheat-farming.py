@@ -45,9 +45,9 @@ def warp_garden():
     time.sleep(5)
 
 def move_180():
-    MOVE_DURATION = 1.25
     print("Moving 180 dregrees")
-    pyautogui.move(548, 0, MOVE_DURATION)
+    pyautogui.move(800, 0)
+    pyautogui.move(400, 0)
     pyautogui.keyDown("W")
     time.sleep(0.5)
     pyautogui.keyUp("W")
