@@ -1,5 +1,9 @@
 # CHANGELOG.md
 
+## 1.2.3
+
+# BUGFIX
+- Remerting move durations changes
 ## 1.2.2
 
 # FEATURE
