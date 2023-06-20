@@ -1,24 +1,26 @@
 import pyautogui
 import time
 
-def harvest_wheat(direction, row):
+def harvest_mushroom(direction, row):
     pyautogui.keyDown("x")
-    if row == 5:
+    if row == 3:
         pyautogui.keyUp("D")
         warp_garden()
         move_180()
         direction = "left"
-    if row == 10:
+    if row == 6:
         warp_garden()
         return {
             "direction": "right",
             "row": 0,
         }
     print(direction)
+    if row > 0:
+        look_to_direction(invert_move(direction))
     move_to_direction(direction)
     row = row + 1
     print(f'You are in a {row}th row')
-    time.sleep(75)
+    time.sleep(70)
     return {
         "direction": invert_move(direction),
         "row": row,
@@ -42,15 +44,30 @@ def warp_garden():
     pyautogui.press("z")
     time.sleep(5)
 
+def look_to_direction(direction):
+    if direction == "right":
+        look_right()
+    else:
+        look_left()
+
+def look_right():
+    pyautogui.move(120, 0)
+
+def look_left():
+    pyautogui.move(-120, 0)
+
 def move_180():
     print("Moving 180 dregrees")
     pyautogui.move(800, 0)
     pyautogui.move(400, 0)
     pyautogui.keyDown("W")
-    time.sleep(0.5)
+    time.sleep(0.2)
     pyautogui.keyUp("W")
 
 def invert_move(direction):
+    pyautogui.keyDown("W")
+    time.sleep(0.2)
+    pyautogui.keyUp("W")
     if direction == "right":
         print("Inverted to left")
         return "left"
@@ -84,7 +101,7 @@ def act():
             runs += 1
         locate_breaking_events()
         print(row_count)
-        harvesting = harvest_wheat(direction, row_count)
+        harvesting = harvest_mushroom(direction, row_count)
         print(harvesting)
         try:
             direction = harvesting["direction"]
