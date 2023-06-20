@@ -1,28 +1,66 @@
 import pyautogui
 import time
 
-def harvest_wheat(direction, row):
+def harvest_pumpkin(direction, row):
     pyautogui.keyDown("x")
+    if row == 3:
+        move_to_next_pumpkin_crops()
+    if row == 4:
+        get_first_upstairs()
     if row == 5:
-        pyautogui.keyUp("D")
-        warp_garden()
-        move_180()
-        direction = "left"
-    if row == 10:
+        get_second_upstairs()
+    if row == 6:
         warp_garden()
         return {
-            "direction": "right",
+            "direction": "left",
             "row": 0,
         }
     print(direction)
     move_to_direction(direction)
     row = row + 1
     print(f'You are in a {row}th row')
-    time.sleep(75)
+    time.sleep(50)
     return {
         "direction": invert_move(direction),
         "row": row,
     }
+
+def move_to_next_pumpkin_crops():
+    pyautogui.keyUp("A")
+    pyautogui.keyDown("S")
+    time.sleep(2)
+    pyautogui.keyUp("S")
+    move_to_right()
+    time.sleep(0.1)
+    pyautogui.keyUp("D")
+    pyautogui.keyDown("W")
+    time.sleep(0.1)
+    pyautogui.keyUp("W")
+
+def get_first_upstairs():
+    pyautogui.keyUp("D")
+    move_to_front()
+    pyautogui.keyDown("A")
+    time.sleep(0.5)
+    pyautogui.keyUp("A")
+    move_to_back()
+    move_to_left()
+    time.sleep(0.05)
+    pyautogui.keyUp("A")
+    move_to_front()
+
+def get_second_upstairs():
+    pyautogui.keyUp("A")
+    move_to_front()
+    pyautogui.keyDown("D")
+    time.sleep(0.5)
+    pyautogui.keyUp("D")
+    move_to_back()
+    move_to_right()
+    time.sleep(0.05)
+    pyautogui.keyUp("D")
+    pyautogui.keyUp("A")
+    move_to_front()
 
 def move_to_left():
     pyautogui.keyUp("D")
@@ -31,6 +69,16 @@ def move_to_left():
 def move_to_right():
     pyautogui.keyUp("A")
     pyautogui.keyDown("D")
+
+def move_to_front():
+    pyautogui.keyDown("W")
+    time.sleep(0.1)
+    pyautogui.keyUp("W")
+
+def move_to_back():
+    pyautogui.keyDown("D")
+    time.sleep(0.5)
+    pyautogui.keyUp("D")
 
 def move_to_direction(direction):
     if direction == "right":
@@ -41,14 +89,6 @@ def move_to_direction(direction):
 def warp_garden():
     pyautogui.press("z")
     time.sleep(5)
-
-def move_180():
-    print("Moving 180 dregrees")
-    pyautogui.move(800, 0)
-    pyautogui.move(400, 0)
-    pyautogui.keyDown("W")
-    time.sleep(0.5)
-    pyautogui.keyUp("W")
 
 def invert_move(direction):
     if direction == "right":
@@ -77,14 +117,14 @@ def locate_breaking_events():
 def act():
     runs = 0
     row_count = 0
-    direction = "right"
+    direction = "left"
     while(True):
         if runs == 0:
             change_window()
             runs += 1
         locate_breaking_events()
         print(row_count)
-        harvesting = harvest_wheat(direction, row_count)
+        harvesting = harvest_pumpkin(direction, row_count)
         print(harvesting)
         try:
             direction = harvesting["direction"]
